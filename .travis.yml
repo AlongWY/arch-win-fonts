@@ -6,6 +6,11 @@ services:
 archlinux:
   repos:
     - archlinuxfr=http://repo.archlinux.fr/$arch
+  packages:
+    - fontconfig
+    - xorg-fonts-encodings
+    - xorg-mkfontscale
+    - xorg-mkfontdir
   script:
     - "cd /build/ttf-win10 && makepkg"
     - "cd /build/ttf-office && makepkg"
