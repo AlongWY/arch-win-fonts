@@ -1,3 +1,6 @@
+# Maintainer: Feng Yunlong <alongwyforever@gmail.com>
+# same directory as this PKGBUILD file, then run makepkg.
+
 pkgbase=ttf-office
 pkgname=($pkgbase)
 pkgver=v0.1

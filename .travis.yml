@@ -1,0 +1,29 @@
+sudo: required
+
+services:
+  - docker
+
+archlinux:
+  repos:
+    - archlinuxfr=http://repo.archlinux.fr/$arch
+  script:
+    - "cd $TRAVIS_BUILD_DIR/ttf-win10 && makepkg"
+    - "cd $TRAVIS_BUILD_DIR/ttf-office && makepkg"
+    - "cd $TRAVIS_BUILD_DIR"
+
+script:
+  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key: $GH_TOKEN
+  file_glob: true
+  file:
+    - "ttf-win10/ttf-ms-win10-*-any.pkg.tar.xz"
+    - "ttf-office/ttf-office-*-any.pkg.tar.xz"
+  on:
+    tags: true
+    all_branches: true
+    repo: alongwy/arch-win-fonts
