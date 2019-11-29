@@ -384,5 +384,5 @@ md5sums=('fa3228aadde0db988e1822c2f736c131'
          '797b37dac90752637fba8b1d9a27562a'
          '3bdcea7d2cbe783e0f26551164e86879'
          'deba05c686c925a27a6b303388ef6d9b'
-         '92174867c0d443611f60205aa6a9cc88')
+         skip)
 
