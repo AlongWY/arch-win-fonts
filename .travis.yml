@@ -7,9 +7,8 @@ archlinux:
   repos:
     - archlinuxfr=http://repo.archlinux.fr/$arch
   script:
-    - "cd $TRAVIS_BUILD_DIR/ttf-win10 && makepkg"
-    - "cd $TRAVIS_BUILD_DIR/ttf-office && makepkg"
-    - "cd $TRAVIS_BUILD_DIR"
+    - "cd /build/ttf-win10 && makepkg"
+    - "cd /build/ttf-office && makepkg"
 
 script:
   - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
