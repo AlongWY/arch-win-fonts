@@ -1,0 +1,388 @@
+# Maintainer: Michael Lass <bevan@bi-co.net>
+# Maintainer: Doug Newgard <scimmia at archlinux dot info>
+# Maintainer: Feng Yunlong <alongwyforever@gmail.com>
+# Contributor: reflexing <reflexing@reflexing.ru>
+
+# Instructions were copied from ttf-ms-win8 and slightly modified:
+#
+# BUILD INSTRUCTIONS:
+# -------------------
+#
+# Please note, that usage of Microsoft fonts outside running Windows
+# system is prohibited by EULA (although in certain countries EULA is invalid).
+# Please consult Microsoft license before using fonts.
+#
+# You can acquire fonts either from an installed and up-to-date Windows 10
+# system or the most recent install medium.
+#
+# On the installed Windows 10 system fonts are usually located in
+#       C:\Windows\Fonts
+# and license file is
+#       C:\Windows\System32\Licenses\neutral\_Default\Core\license.rtf
+#
+# How to acquire fonts from Windows 10 install medium:
+#
+#    You can freely download the Windows 10 Enterprise 90-day evaluation from:
+#
+#       http://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise
+#
+#    Fonts are located in 'sources/install.wim' file on the ISO, which
+#    is a 'Windows Imaging Format' (WIM) archive.
+#
+#    You can extract WIM using wimextract ('wimlib' package) or 7z ('p7zip').
+#
+#    Put the following script together with previously extracted
+#    'install.wim' and execute:
+#
+#       wimextract install.wim 1 /Windows/{Fonts/"*".{ttf,ttc},System32/Licenses/neutral/"*"/"*"/license.rtf} --dest-dir fonts
+#
+#    Fonts and license will be located in the 'fonts' dir.
+#
+# You need all files listed in the _ttf_ms_win10[_*] arrays.Place them in the
+# same directory as this PKGBUILD file, then run makepkg.
+
+pkgbase=ttf-ms-win10
+pkgname=($pkgbase{,-japanese,-korean,-sea,-thai,-zh_cn,-zh_tw,-other})
+pkgver=10.0.18362.116
+pkgrel=1
+arch=(any)
+url='http://www.microsoft.com/typography/fonts/product.aspx?PID=164'
+license=(custom)
+depends=(fontconfig xorg-fonts-encodings xorg-mkfontscale xorg-mkfontdir)
+provides=(ttf-font)
+conflicts=(ttf-vista-fonts)
+
+_ttf_ms_win10=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+arial.ttf      arialbd.ttf    ariali.ttf     arialbi.ttf    # Arial
+ariblk.ttf                                                  # Arial Black
+bahnschrift.ttf                                             # Bahnschrift
+calibri.ttf    calibrib.ttf   calibrii.ttf   calibriz.ttf   # Calibri
+calibril.ttf                  calibrili.ttf                 # Calibri Light
+cambria.ttc    cambriab.ttf   cambriai.ttf   cambriaz.ttf   # Cambria
+Candara.ttf    Candarab.ttf   Candarai.ttf   Candaraz.ttf   # Candara
+Candaral.ttf                  Candarali.ttf                 # Candara Light
+comic.ttf      comicbd.ttf    comici.ttf     comicz.ttf     # Comic Sans MS
+consola.ttf    consolab.ttf   consolai.ttf   consolaz.ttf   # Consolas
+constan.ttf    constanb.ttf   constani.ttf   constanz.ttf   # Constantia
+cour.ttf       courbd.ttf     couri.ttf      courbi.ttf     # Courier New
+corbel.ttf     corbelb.ttf    corbeli.ttf    corbelz.ttf    # Corbel
+corbell.ttf                   corbelli.ttf                  # Corbel Light
+framd.ttf                     framdit.ttf                   # Franklin Gothic Medium
+Gabriola.ttf                                                # Gabriola
+georgia.ttf    georgiab.ttf   georgiai.ttf   georgiaz.ttf   # Georgia
+holomdl2.ttf                                                # HoloLens MDL2 Assets
+impact.ttf                                                  # Impact
+Inkfree.ttf                                                 # Ink Free
+lucon.ttf                                                   # Lucida Console
+l_10646.ttf                                                 # Lucida Sans Unicode
+marlett.ttf                                                 # Marlett
+micross.ttf                                                 # Microsoft Sans Serifc
+pala.ttf       palab.ttf      palai.ttf      palabi.ttf     # Palatino Linotype
+segoepr.ttf    segoeprb.ttf                                 # Segoe Print
+segoesc.ttf    segoescb.ttf                                 # Segoe Script
+segmdl2.ttf                                                 # Segoe MDL2 Assets
+segoeui.ttf    segoeuib.ttf   segoeuii.ttf   segoeuiz.ttf   # Segoe UI
+seguibl.ttf                   seguibli.ttf                  # Segoe UI Black
+seguiemj.ttf                                                # Segoe UI Emoji
+seguihis.ttf                                                # Segoe UI Historic
+segoeuil.ttf                  seguili.ttf                   # Segoe UI Light
+seguisb.ttf                   seguisbi.ttf                  # Segoe UI Semibold
+segoeuisl.ttf                 seguisli.ttf                  # Segoe UI Semilight
+seguisym.ttf                                                # Segoe UI Symbol
+Sitka.ttc      SitkaB.ttc     SitkaI.ttc     SitkaZ.ttc     # Sitka
+sylfaen.ttf                                                 # Sylfaen
+symbol.ttf                                                  # Symbol
+tahoma.ttf     tahomabd.ttf                                 # Tahoma
+times.ttf      timesbd.ttf    timesi.ttf     timesbi.ttf    # Times New Roman
+trebuc.ttf     trebucbd.ttf   trebucit.ttf   trebucbi.ttf   # Trebuchet MS
+verdana.ttf    verdanab.ttf   verdanai.ttf   verdanaz.ttf   # Verdana
+webdings.ttf                                                # Webdings
+wingding.ttf                                                # Wingdings
+)
+
+_ttf_ms_win10_japanese=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+msgothic.ttc                                                # MS Gothic
+YuGothR.ttc   YuGothB.ttc                                   # Yu Gothic
+YuGothM.ttc                                                 # Yu Gothic Medium
+YuGothL.ttc                                                 # Yu Gothic Light
+)
+
+_ttf_ms_win10_korean=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+malgun.ttf     malgunbd.ttf                                 # Malgun Gothic
+malgunsl.ttf                                                # Malgun Gothic Semilight
+)
+
+_ttf_ms_win10_sea=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+javatext.ttf                                                # Javanese Text
+himalaya.ttf                                                # Microsoft Himalaya
+ntailu.ttf     ntailub.ttf                                  # Microsoft New Tai Lue
+phagspa.ttf    phagspab.ttf                                 # Microsoft PhagsPa
+taile.ttf      taileb.ttf                                   # Microsoft Tai Le
+msyi.ttf                                                    # Microsoft Yi Baiti
+monbaiti.ttf                                                # Mongolian Baiti
+mmrtext.ttf    mmrtextb.ttf                                 # Myanmar Text
+Nirmala.ttf    NirmalaB.ttf                                 # Nirmala UI
+NirmalaS.ttf                                                # Nirmala UI Semilight
+)
+
+_ttf_ms_win10_thai=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+LeelawUI.ttf   LeelaUIb.ttf                                 # Leelawadee UI
+LeelUIsl.ttf                                                # Leelawadee UI Semilight
+)
+
+_ttf_ms_win10_zh_cn=( # Chinese (Simplified)
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+simhei.ttf                                                  # SimHei
+simkai.ttf                                                  # KaiTi
+simfang.ttf                                                 # FangSong
+simsun.ttc                                                  # NSimSun
+simsunb.ttf                                                 # SimSun-ExtB
+msyh.ttc       msyhbd.ttc                                   # Microsoft YaHei
+msyhl.ttc                                                   # Microsoft YaHei Light
+)
+
+_ttf_ms_win10_zh_tw=( # Chinese (Traditional)
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+msjh.ttc       msjhbd.ttc                                   # Microsoft JhengHei
+msjhl.ttc                                                   # Microsoft JhengHei Light
+mingliub.ttc                                                # MingLiU_HKSCS-ExtB
+)
+
+_ttf_ms_win10_other=(
+#########################################################################################
+# Normal         Bold          Italic        Bold+Italic    #  Full name                #
+#########################################################################################
+ebrima.ttf     ebrimabd.ttf                                 # Ebrima
+gadugi.ttf     gadugib.ttf                                  # Gadugi
+mvboli.ttf                                                  # MV Boli
+)
+
+DLAGENTS=("file::/usr/bin/echo ${BOLD}${RED} Unable to find %u, please read the PKGBUILD ${ALL_OFF}" $DLAGENTS[@])
+
+source=(${_ttf_ms_win10[@]/#/file://}
+        ${_ttf_ms_win10_japanese[@]/#/file://}
+        ${_ttf_ms_win10_korean[@]/#/file://}
+        ${_ttf_ms_win10_sea[@]/#/file://}
+        ${_ttf_ms_win10_thai[@]/#/file://}
+        ${_ttf_ms_win10_zh_cn[@]/#/file://}
+        ${_ttf_ms_win10_zh_tw[@]/#/file://}
+        ${_ttf_ms_win10_other[@]/#/file://}
+        file://license.rtf)
+
+_package() {
+    conflicts+=(${pkgname/10/8} ttf-win7-fonts${pkgname##*10})
+
+    install -Dm644 $@ -t "$pkgdir/usr/share/fonts/TTF"
+    install -Dm644 license.rtf -t "$pkgdir/usr/share/licenses/$pkgname"
+}
+
+package_ttf-ms-win10() {
+    pkgdesc='Microsoft Windows 10 TrueType fonts'
+    provides+=(ttf-tahoma ttf-ms-fonts)
+    conflicts+=(ttf-tahoma ttf-ms-fonts)
+    _package ${_ttf_ms_win10[@]}
+}
+
+package_ttf-ms-win10-japanese() {
+    pkgdesc='Microsoft Windows 10 Japanese TrueType fonts'
+    _package ${_ttf_ms_win10_japanese[@]}
+}
+
+package_ttf-ms-win10-korean() {
+    pkgdesc='Microsoft Windows 10 Korean TrueType fonts'
+    _package ${_ttf_ms_win10_korean[@]}
+}
+
+package_ttf-ms-win10-sea() {
+    pkgdesc='Microsoft Windows 10 Southeast Asian TrueType fonts'
+    _package ${_ttf_ms_win10_sea[@]}
+}
+
+package_ttf-ms-win10-thai() {
+    pkgdesc='Microsoft Windows 10 Thai TrueType fonts'
+    _package ${_ttf_ms_win10_thai[@]}
+}
+
+package_ttf-ms-win10-zh_cn() {
+    pkgdesc='Microsoft Windows 10 Simplified Chinese TrueType fonts'
+    _package ${_ttf_ms_win10_zh_cn[@]}
+}
+
+package_ttf-ms-win10-zh_tw() {
+    pkgdesc='Microsoft Windows 10 Traditional Chinese TrueType fonts'
+    _package ${_ttf_ms_win10_zh_tw[@]}
+}
+
+package_ttf-ms-win10-other() {
+    pkgdesc='Microsoft Windows 10 Other TrueType fonts'
+    _package ${_ttf_ms_win10_other[@]}
+}
+
+md5sums=('fa3228aadde0db988e1822c2f736c131'
+         '858f5a50a4c3e5e6559a0c9b128eee60'
+         '97f1aa85e8ce271cd2a65759cb230397'
+         'b04eb00031bf4d82265b30855d7a314f'
+         'ec8b4d9c0e68604dfbeda73d0213c82e'
+         'a397d89c44b9bd679ffe17cfe4a0dcde'
+         '3dea6da513097358f7fbb4408aacb736'
+         '42a59a6bffb64adb463af2b927753d53'
+         '672b86cf4d6a9304e008c9142a6a9225'
+         'dd1ab2d1ba9ae460d6e842649fe5c100'
+         'ca17c1d0451117324666a90f7537cc91'
+         '51991bce388163d3e30701ab1fdf6318'
+         '5de71f725cd45a283e8059909c85726c'
+         '0a84110497cef2db12947ce798071db7'
+         'a68f2038b179d4fc695ff5558d0ddfa6'
+         'c20f45125d28626f0f3e70df16a7e8e7'
+         '96695e58ce12302a11c933a88e70b695'
+         'e8139117951265681eaf983b0660f9bf'
+         '9f8e3153056bc1842e0c3c878103a16f'
+         '4ee56f7fea93e8496a46a438017d09d6'
+         'e975b0b841939711778fdb7fcf85052e'
+         '66e4cba59f846124f124fae0dc35b96c'
+         'cb5a21a92d77658df1beee4d51b72777'
+         '0af9114b0fbe6d41b421857cf7988cfe'
+         '8d1342d1de52971000062b1fa1cc8ccf'
+         '7e072d02c20f7b04ad57810525cc2ee3'
+         '5715d3f0bfcd28a4e008721a66118fe2'
+         '961db2d1cdc0e620afd2b621183c0215'
+         'ef071299b3712929d1d5346015602559'
+         '80d2d7331952a9dab0aa093bb0483299'
+         '36cf2ed2cc04c9b698230d4b0a3ee159'
+         '32375753eac9db274e3b3c4cf92d6277'
+         'ff7fddca2990feb7b9913d2c4135524b'
+         '4cc23fabe8475d671075c78eaf8b3b09'
+         'd8e98cd2725a3d8e80897fa55297dde0'
+         '69a8f2205db42688f843d7cf7cc735b6'
+         'd8d243e2f5bfa088eb7a5838cdc11f11'
+         'bc48726aae612fa201e18db8f38957eb'
+         'a666a3dc2358b75baa206b2dd4c5a615'
+         '3ad8d4727d600d1d1af31394454235be'
+         'b23e0e8b4842c028574ac2b3941924f5'
+         '82bd7555c2aa0f84e52572b4302e0131'
+         '1eae8a8ffaf0e470ac7d5d762c604f85'
+         '119865908985ab08f8e27552e4b75128'
+         '09aff291f163ebea6a3fc9e98ee3281d'
+         'f00e17623fd5ec9ec1d8743559817ea1'
+         'f579cc9aeeaa88e8b0948145bbe93afd'
+         'ca8446d58eb8315c7a458caf81c6ed86'
+         '27836f0c46bfb03982e86c4ed5c8cc45'
+         '4c6c096efd7e266ac0c407b4af464dbb'
+         '8be30e033b2067f0fc5f382af5298d7c'
+         'ad27928aea2fb97ec9925cad3e896fea'
+         'f12902024f7b77ee4c34557ee6f3818b'
+         '73428cd1ad823d01d77b642ee6104415'
+         '7a05454ef740f617a265e8a5cf826df6'
+         '34e0e35ef46b6d1d86784aad585fccc1'
+         '21bf589620d6f89ef1bf31537dd7fde2'
+         '5fbae7a148389a502bc8fedbfc66b8af'
+         '17ba5aecb1bc7408897d55b3744701a9'
+         '1d9da404e3299a4a810709aff1a068cd'
+         '036792ed8a20aa9121ec7e9a2ed81246'
+         '34f634b4dab369faf1a40d8ad4a58afc'
+         '32442207adcaa9247104cf2fce48e73e'
+         '07ae95ea3bc6f15f78ee51c2f3542110'
+         '32da124ff51edc004695c8ec3a00c073'
+         'd847fb7d26eb0365c0678fcd784e3a9f'
+         '34d57004ac6032d45228c3c79020b442'
+         'd9076ed73f2501090da92fe3c72d3ce6'
+         '299556cecd6b730bce8230f529e837a1'
+         'ac2711bc5bf8d5883fc4091ac738a19a'
+         'cb53f8068af6572a9ad4cc3c9a226704'
+         '868d9468768f1660600f840e3b864815'
+         '38b35433147fc7e2b286919b5cb8854e'
+         'd8a7eecbebf9dfdf622db8ccda63aff5'
+         '7139961e489eefcc92aaefdea141ddae'
+         'd44929d62a49114d494d1768893fcdf7'
+         '5989bb884027d397cf27a15c18c26b95'
+         'bc74928e0b7d13379ccf0b39354e87ad'
+         '3f0b609427347ed7f9d60c8c2f0b2e14'
+         '426088e434f43481b24859270171b906'
+         '3b10d164be87745d556fddfb792096cd'
+         'c34e3e28c24e78dcd55b0a83c643d574'
+         'abd01a79bd4c8d6617422b796937253a'
+         '298213034e521518cecdfc108417e534'
+         'c356a1463fe9984dfef725584e275a59'
+         '69477e688bc7ba8aed8d51c638cdf46d'
+         '6e0c5aec269399b8af3c6e505bb0144d'
+         '3e443984997631a694dabf0fba9c8693'
+         '013ec165105a40eb43bc1130d530bd1f'
+         'ae4aef91c1d0a14fb7da1f924d04c4e9'
+         '3f7dc90a1651b35e69718bbf38ed265a'
+         '54e5495b1fa1fcb0958134a536546201'
+         '9d7cd9dcba718421261104b35bac94a1'
+         '53d9fc19eb63be2e53db3c5b2116ce98'
+         '2125db67ab1a76e525efecf7d2ab4c51'
+         'af116cc142b0786d0c7898103a0bcd12'
+         'a92504d6bdc80a782596f171d66f4131'
+         '7b0201d14bb2a17514480eafd86da51f'
+         '5587517d47893e1470ab2296eb609c93'
+         '215accaad3dd60e8a5ab1b110f79d507'
+         '0ba125ab428efa4f7fe28097a541326c'
+         '8924123111f4a88ec9a4541aa713db53'
+         'df1c5a5ce47c99504c1efe6f5421c7ba'
+         'd9f147b4c366da5940876fd47992c4d2'
+         '214268a0474c461d953c69c6d742819d'
+         'a1909ddba7ae2a2918318d8c75f686bf'
+         'fb09743d969e6beb1a5888878111d750'
+         '82a6d840626aa506767fb7e6de462bf3'
+         '0fd31d088de3a9062313bbe326e2b0f8'
+         '7ffc78f7f8f4d1dc45f84785d3077905'
+         '4c1636d02b70d4aac18451033c852955'
+         '700ee76ff4fd3b46b357bf3b557cded1'
+         '87acfd06522f8b1f93e3a17e9bc24347'
+         '387b5b15fb94c1fe7e4f2813a41510e7'
+         '95e6ad76acff21a054c0b720635e05fe'
+         'bb6ab27ad4b77801d928c93c47134bcc'
+         '45aaf02ad552d1faa62240a9003a4a0c'
+         '3afff9c74185d445622d9148a2890178'
+         '1afbd65543850247a782bcdb0f0cbf0b'
+         'b8580701c445df583a6d32c1e8169e13'
+         '60ea01da198e4fcf61c9f368f8e6c56f'
+         'e7967f8efafafaadcf3db1e09cffce45'
+         'd5b3d1a292f52adad6125d3262d7ee76'
+         '64027c0cbe356632029a1e54542f12fe'
+         'ea0ae8c9b9c0d979d4de7b6d12a4bff2'
+         '01506aa8682d8137ad8ce5aa0c55a32c'
+         '937e1db93d3a9b7098dda70d8cf82b5b'
+         '08a2b19ed564555b5048f6d8f2bfc622'
+         'a9b91a46b2d801f6985c0bd70c796185'
+         'e01777522ba929ab9939e38363e01035'
+         'ab5640f6f6fffc284f8eeeb3497e07ba'
+         '6078b506afa793576f8a93475aab95b8'
+         '65ab65f8176da7616879216d1b996087'
+         '31d9eb6facbeb5de05facc4ef172bea2'
+         '9d7397ed5a4467055f794fadafbf9dc8'
+         '4f6a5917d8a4c179f8c3ed7eec7e3a48'
+         'c8d4adc05081f9dff739ee4f5885a0bc'
+         '669b86d0ba82c787856f404ed3af6a22'
+         '73dc780c1e0195604c75a74d7aceafa3'
+         '9cca509da38a029b441bf60b094a2380'
+         'a9f8da40201fc1f2d334ad59504c107f'
+         'fcffb34bf6e528e63a497688f2d1bc96'
+         '2126d6e6970977f21fa5b85d1b69a9c9'
+         '22508d1da53ecaf941350c4a2e060f3a'
+         '797b37dac90752637fba8b1d9a27562a'
+         '3bdcea7d2cbe783e0f26551164e86879'
+         'deba05c686c925a27a6b303388ef6d9b'
+         '92174867c0d443611f60205aa6a9cc88')
+
