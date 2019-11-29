@@ -30,4 +30,3 @@ deploy:
   on:
     tags: true
     all_branches: true
-    repo: alongwy/arch-win-fonts
